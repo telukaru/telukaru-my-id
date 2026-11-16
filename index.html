@@ -43,29 +43,19 @@ select,input,textarea{width:100%;padding:11px;border:1.5px solid #ddd;border-rad
 .gallery{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
 .gallery img{width:100%;height:90px;object-fit:cover;border-radius:10px}
 .video{width:100%;height:220px;border:0;border-radius:12px;margin-top:10px}
-.cart-bar{position:fixed;left:12px;right:12px;bottom:72px;background:#0b2a4a;color:#fff;padding:12px 14px;border-radius:14px;display:flex;justify-content:space-between;align-items:center;z-index:60;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.cart-bar{position:fixed;left:12px;right:12px;bottom:72px;background:#0b2a4a;color:#fff;padding:12px 14px;border-radius:14px;display:flex;justify-content:space-between;align-items:center;z-index:1000000;box-shadow:0 8px 24px rgba(0,0,0,.25)}
 .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:100;overflow:auto;padding:16px}
 .modal-box{background:#fff;border-radius:16px;padding:18px;max-width:520px;margin:20px auto}
 .struk{background:#fff;border:1px dashed #333;padding:16px;border-radius:10px;font-size:13px;line-height:1.6}
-.bottom-nav{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #ddd;display:flex;z-index:70}
+.bottom-nav{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #ddd;display:flex;z-index:1000000}
 .bottom-nav button{flex:1;padding:10px 2px;border:0;background:#fff;font-size:11px;font-weight:700;cursor:pointer;color:#666}
 .bottom-nav button.active{color:#0b2a4a;border-top:3px solid #ffb703}
 footer{background:#0b2a4a;color:#fff;padding:22px 16px 30px;margin-top:20px;font-size:13px;line-height:1.7}
 footer a{color:#ffb703}
 .hidden{display:none!important}
-/* LAPIS 1: SEMBUNYIKAN BADGE NETLIFY */
-a[href*="netlify.com"], iframe[src*="netlify"]{display:none!important;visibility:hidden!important}
-div:has(> a[href*="netlify.com"]){display:none!important}
-/* LAPIS 3: PENUTUP BADGE - WARNA SAMA DENGAN BACKGROUND BIAR NYATU */
-#tutup-badge-netlify{
-  position:fixed;bottom:58px;right:6px;width:190px;height:42px;
-  background:#f6f7fb;z-index:99999;pointer-events:none;border-radius:20px;
-}
-/* Biar penutupnya juga nutup kalau di tab lain yang background putih */
-#tutup-badge-netlify-2{
-  position:fixed;bottom:58px;right:6px;width:190px;height:42px;
-  background:#fff;z-index:99998;pointer-events:none;border-radius:20px;
-}
+/* REVISI FINAL BADGE: MENU DI DEPAN, BADGE DI BELAKANG - TIDAK ADA KOTAK PENUTUP LAGI */
+a[href*="netlify.com"], iframe[src*="netlify"]{z-index:1!important}
+div:has(> a[href*="netlify.com"]){z-index:1!important}
 .zodiak-card{background:#fff8e1;padding:14px;border-radius:12px;line-height:1.7;font-size:13px}
 .zodiak-card b{font-size:15px}
 .zodiak-bar{height:8px;background:#eee;border-radius:99px;overflow:hidden;margin:3px 0 8px}
@@ -73,8 +63,6 @@ div:has(> a[href*="netlify.com"]){display:none!important}
 </style>
 </head>
 <body>
-<div id="tutup-badge-netlify-2"></div>
-<div id="tutup-badge-netlify"></div>
 
 <header class="top">
   <div class="logo">
@@ -159,7 +147,7 @@ div:has(> a[href*="netlify.com"]){display:none!important}
   </div>
 </div>
 
-<!-- ZODIAK - VERSI BARU BEDA TIAP HARI & TIAP ZODIAK -->
+<!-- ZODIAK - BEDA TIAP HARI & TIAP ZODIAK -->
 <div id="tab-zodiak" class="hidden">
   <div class="section">
     <h2>🔮 Zodiak Hari Ini</h2>
@@ -326,7 +314,7 @@ function downloadJPG(){
   alert('Untuk download JPG: Screenshot struk ini, atau di HP tekan tombol Share > Save as Image. Untuk PDF gunakan tombol Print PDF di bawah.');
 }
 
-// ===== ZODIAK BARU: BEDA TIAP HARI & TIAP ZODIAK =====
+// ===== ZODIAK: BEDA TIAP HARI & TIAP ZODIAK =====
 const zodiakNama=["♈ Aries (21 Mar - 19 Apr)","♉ Taurus (20 Apr - 20 Mei)","♊ Gemini (21 Mei - 20 Jun)","♋ Cancer (21 Jun - 22 Jul)","♌ Leo (23 Jul - 22 Agu)","♍ Virgo (23 Agu - 22 Sep)","♎ Libra (23 Sep - 22 Okt)","♏ Scorpio (23 Okt - 21 Nov)","♐ Sagitarius (22 Nov - 21 Des)","♑ Capricorn (22 Des - 19 Jan)","♒ Aquarius (20 Jan - 18 Feb)","♓ Pisces (19 Feb - 20 Mar)"];
 const zRezeki=[
 "Ada orderan masuk dari orang tak terduga, jangan lupa balas WA cepat.",
@@ -388,12 +376,10 @@ const zSaran=[
 ];
 const zWarna=["Merah","Kuning","Biru Laut","Hijau","Putih","Hitam","Orange","Pink","Ungu","Coklat","Abu-abu","Tosca"];
 const zHariBaik=["Senin","Selasa","Rabu","Kamis","Jumat","Sabtu","Minggu"];
-// Rumus: seed dari tanggal + index zodiak, jadi beda tiap hari & tiap zodiak, tapi sama untuk semua orang di hari yang sama
 function seedHarian(zodiakIndex){
   let d=new Date();
   let key = d.getFullYear()*10000 + (d.getMonth()+1)*100 + d.getDate();
   let seed = (key * 31 + (zodiakIndex+1)*17 + 7) % 100000;
-  // hash sederhana biar acak tapi stabil dalam 1 hari
   let x = Math.sin(seed) * 10000;
   return Math.abs(Math.floor((x - Math.floor(x)) * 10000));
 }
@@ -446,7 +432,7 @@ function acakZodiak(){
 showZodiak(); render();
 </script>
 
-<!-- LAPIS 2: HAPUS BADGE NETLIFY VIA JS -->
+<!-- HAPUS BADGE NETLIFY - AMAN, TIDAK SENTUH MENU -->
 <script>
 (function(){
   function killBadge(){
@@ -454,19 +440,15 @@ showZodiak(); render();
       var href=(el.getAttribute&&el.getAttribute('href')||'').toLowerCase();
       var src=(el.getAttribute&&el.getAttribute('src')||'').toLowerCase();
       if(href.includes('netlify.com')||src.includes('netlify')){
-        if(el.parentElement && el.parentElement.tagName!=='BODY'){el.parentElement.style.display='none';el.parentElement.remove();}
+        // Jangan hapus kalau parent-nya adalah menu / bottom-nav / cart-bar
+        var p = el.parentElement;
+        if(p && (p.classList.contains('bottom-nav') || p.classList.contains('cart-bar') || p.closest('.bottom-nav') || p.closest('.cart-bar'))){
+          return;
+        }
+        if(p && p.tagName!=='BODY'){p.style.display='none';p.remove();}
         el.remove();
       }
     });
-    document.querySelectorAll('div, span').forEach(function(el){
-      var t=(el.innerText||'').trim().toLowerCase();
-      if(t==='powered by netlify'){el.remove();}
-    });
-    // Pastikan penutup selalu di depan
-    var c1=document.getElementById('tutup-badge-netlify');
-    var c2=document.getElementById('tutup-badge-netlify-2');
-    if(c1) c1.style.display='block';
-    if(c2) c2.style.display='block';
   }
   killBadge();
   setInterval(killBadge,1000);
