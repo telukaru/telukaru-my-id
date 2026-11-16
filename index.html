@@ -53,6 +53,9 @@ select,input,textarea{width:100%;padding:11px;border:1.5px solid #ddd;border-rad
 footer{background:#0b2a4a;color:#fff;padding:22px 16px 30px;margin-top:20px;font-size:13px;line-height:1.7}
 footer a{color:#ffb703}
 .hidden{display:none!important}
+/* HILANGKAN BADGE NETLIFY */
+a[href*="netlify.com"]:not([href*="telukaru"]){display:none!important}
+iframe[src*="netlify"]{display:none!important}
 </style>
 </head>
 <body>
@@ -109,7 +112,6 @@ footer a{color:#ffb703}
     </div>
     <h2 style="margin-top:18px">🎬 Video Kami</h2>
     <p>Ganti ID playlist di bawah ini dengan playlist Youtube prof.</p>
-    <!-- GANTI PLAYLIST ID DI SINI -->
     <iframe class="video" src="https://www.youtube.com/embed/videoseries?list=PLuU8q8jT2uY5nZvJ3ZvJ3ZvJ3ZvJ3Zv" allowfullscreen></iframe>
     <p style="margin-top:8px">Playlist: TelukAru - Pangkalan Brandan</p>
   </div>
@@ -206,7 +208,7 @@ footer a{color:#ffb703}
   <button class="active" onclick="showTab('home',this)">🏠<br>HOME</button>
   <button onclick="showTab('jasa',this)">🛠️<br>JASA</button>
   <button onclick="showTab('kabar',this)">📰<br>KABAR</button>
-  <button onclick="showTab('zodiak',this)"><br></button>
+  <button onclick="showTab('zodiak',this)">🔮<br>ZODIAK</button>
   <button onclick="openCheckout()">🛒<br>KERANJANG</button>
 </nav>
 
@@ -297,6 +299,30 @@ function downloadJPG(){
   alert('Untuk download JPG: Screenshot struk ini, atau di HP tekan tombol Share > Save as Image. Untuk PDF gunakan tombol Print PDF di bawah.');
 }
 showZodiak(); render();
+</script>
+
+<!-- HILANGKAN BADGE NETLIFY - JANGAN DIHAPUS -->
+<script>
+(function(){
+  function killBadge(){
+    document.querySelectorAll('a, div, iframe, span, button').forEach(function(el){
+      var t = (el.innerText || '').toLowerCase();
+      var href = (el.getAttribute && el.getAttribute('href') || '').toLowerCase();
+      if(t.includes('powered by netlify') || href.includes('netlify.com') && el.closest('body') && el.innerText && el.innerText.length < 100){
+        var target = el;
+        // Naik ke parent yang fixed di pojok
+        for(var i=0;i<3;i++){ if(target.parentElement) target = target.parentElement; }
+        target.style.display='none';
+        target.remove();
+      }
+    });
+  }
+  // Jalankan berkali-kali karena badge Netlify muncul telat
+  setInterval(killBadge, 500);
+  // Pantau kalau ada elemen baru
+  var obs = new MutationObserver(killBadge);
+  obs.observe(document.body, {childList:true, subtree:true});
+})();
 </script>
 </body>
 </html>
