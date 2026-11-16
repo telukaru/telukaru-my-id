@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Telukaru.my.id - Jasa Bikin Website, Undangan Digital & Desain</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,Arial,sans-serif}
+body{background:#f6f7fb;color:#111;padding-bottom:90px}
+a{text-decoration:none;color:inherit}
+.top{background:#0b2a4a;color:#fff;padding:12px 14px;position:sticky;top:0;z-index:50}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-mark{width:44px;height:44px;background:#ffb703;color:#0b2a4a;font-weight:900;font-size:22px;display:grid;place-items:center;border-radius:12px}
+.logo b{font-size:19px;line-height:1}
+.logo small{color:#a8d0ff;font-size:12px}
+.tabs{display:flex;gap:8px;overflow:auto;margin-top:12px;padding-bottom:2px}
+.tabs button{border:0;background:#143d68;color:#fff;padding:9px 16px;border-radius:999px;white-space:nowrap;font-weight:700;cursor:pointer}
+.tabs button.active{background:#ffb703;color:#111}
+.hero{margin:14px;background:#fff;border-radius:16px;padding:18px}
+.hero h1{font-size:24px;line-height:1.2}
+.hero p{color:#555;margin:10px 0 14px;font-size:14px}
+.btn{display:inline-block;background:#25D366;color:#fff;padding:11px 16px;border-radius:10px;font-weight:800;border:0;cursor:pointer}
+.btn-dark{background:#0b2a4a}
+.btn-yellow{background:#ffb703;color:#111}
+.btn-outline{background:#fff;border:1.5px solid #ddd;color:#111}
+.filters{margin:14px;background:#fff;border-radius:16px;padding:14px}
+.filters h3{font-size:14px;margin-bottom:10px}
+.chip{display:inline-block;background:#eef2f7;padding:8px 12px;border-radius:999px;margin:4px 4px 4px 0;font-size:13px;cursor:pointer;border:1px solid #e0e6ef}
+.chip.active{background:#0b2a4a;color:#fff}
+select,input,textarea{width:100%;padding:11px;border:1.5px solid #ddd;border-radius:10px;margin-top:8px;font-size:14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 14px}
+@media(max-width:560px){.grid{grid-template-columns:1fr 1fr}.card p{font-size:12px}}
+.card{background:#fff;border-radius:14px;overflow:hidden;border:1px solid #eee;display:flex;flex-direction:column}
+.card img{width:100%;height:130px;object-fit:cover}
+.card-body{padding:10px;display:flex;flex-direction:column;gap:5px;flex:1}
+.badge{font-size:11px;background:#fff3cd;padding:4px 8px;border-radius:99px;width:fit-content;font-weight:700}
+.price{font-weight:900;color:#0b2a4a}
+.qty{display:flex;align-items:center;gap:8px;margin-top:6px}
+.qty button{width:30px;height:30px;border-radius:8px;border:1px solid #ddd;background:#f1f1f1;font-size:18px;cursor:pointer}
+.section{margin:18px 14px;background:#fff;border-radius:16px;padding:16px}
+.section h2{font-size:18px;margin-bottom:6px}
+.section p{font-size:13px;color:#555;line-height:1.6}
+.gallery{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
+.gallery img{width:100%;height:90px;object-fit:cover;border-radius:10px}
+.video{width:100%;height:220px;border:0;border-radius:12px;margin-top:10px}
+.cart-bar{position:fixed;left:12px;right:12px;bottom:72px;background:#0b2a4a;color:#fff;padding:12px 14px;border-radius:14px;display:flex;justify-content:space-between;align-items:center;z-index:60;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:100;overflow:auto;padding:16px}
+.modal-box{background:#fff;border-radius:16px;padding:18px;max-width:520px;margin:20px auto}
+.struk{background:#fff;border:1px dashed #333;padding:16px;border-radius:10px;font-size:13px;line-height:1.6}
+.bottom-nav{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #ddd;display:flex;z-index:70}
+.bottom-nav button{flex:1;padding:10px 2px;border:0;background:#fff;font-size:11px;font-weight:700;cursor:pointer;color:#666}
+.bottom-nav button.active{color:#0b2a4a;border-top:3px solid #ffb703}
+footer{background:#0b2a4a;color:#fff;padding:22px 16px 30px;margin-top:20px;font-size:13px;line-height:1.7}
+footer a{color:#ffb703}
+.hidden{display:none!important}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="logo">
+    <div class="logo-mark">TA</div>
+    <div><b>Telukaru.my.id</b><br><small>Jasa Website • Undangan Digital • Desain</small></div>
+  </div>
+  <div class="tabs">
+    <button class="active" onclick="showTab('home',this)">🏠 HOME</button>
+    <button onclick="showTab('jasa',this)">🛠️ JASA</button>
+    <button onclick="showTab('kabar',this)">📰 KABAR</button>
+  </div>
+</header>
+
+<!-- HOME -->
+<div id="tab-home">
+  <div class="hero">
+    <h1>Jasa Bikin Website, Undangan Digital RSVP & Desain</h1>
+    <p>Pelawi Utara, Pangkalan Brandan, Babalan, Langkat, Sumatera Utara. Cepat, murah, bisa Cash / QRIS.</p>
+    <button class="btn" onclick="showTab('jasa',document.querySelectorAll('.tabs button')[1])">Lihat Semua Jasa →</button>
+    <a class="btn btn-dark" href="https://wa.me/6287794536555?text=Halo%20TelukAru%2C%20saya%20mau%20tanya%20jasa" target="_blank">Chat WA</a>
+    <p style="margin-top:10px">⭐ Dipercaya warga Brandan • 📦 Pengerjaan 1-3 Hari • 💳 QRIS 087794536555</p>
+  </div>
+
+  <div class="filters">
+    <h3>🔍 Cari Jasa - Filter Kategori & Harga</h3>
+    <div id="chips">
+      <span class="chip active" onclick="setCat('all',this)">Semua</span>
+      <span class="chip" onclick="setCat('website',this)">Website</span>
+      <span class="chip" onclick="setCat('undangan',this)">Undangan Digital</span>
+      <span class="chip" onclick="setCat('desain',this)">Desain</span>
+    </div>
+    <select id="sort" onchange="render()">
+      <option value="low">Harga: Terendah - Tertinggi</option>
+      <option value="high">Harga: Tertinggi - Terendah</option>
+      <option value="name">Nama A - Z</option>
+    </select>
+    <input id="search" placeholder="Cari: website sekolah, undangan, logo..." oninput="render()">
+  </div>
+
+  <div class="grid" id="products"></div>
+
+  <div class="section">
+    <h2>📸 Galeri Foto</h2>
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=400" alt="Website">
+      <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=400" alt="Undangan">
+      <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400" alt="Desain">
+      <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=400" alt="Desain">
+      <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=400" alt="Wedding">
+      <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=400" alt="Wedding">
+    </div>
+    <h2 style="margin-top:18px">🎬 Video Kami</h2>
+    <p>Ganti ID playlist di bawah ini dengan playlist Youtube prof.</p>
+    <!-- GANTI PLAYLIST ID DI SINI -->
+    <iframe class="video" src="https://www.youtube.com/embed/videoseries?list=PLuU8q8jT2uY5nZvJ3ZvJ3ZvJ3ZvJ3Zv" allowfullscreen></iframe>
+    <p style="margin-top:8px">Playlist: TelukAru - Pangkalan Brandan</p>
+  </div>
+</div>
+
+<!-- JASA -->
+<div id="tab-jasa" class="hidden">
+  <div class="section">
+    <h2>🛠️ Semua Jasa TelukAru</h2>
+    <p><b>Jasa Bikin Website:</b> Sekolah, UMKM, Organisasi, Yayasan, Aliansi, Forum, Persatuan, Komunitas, Konten Kreator, Profil, Portofolio, Portal Berita.</p>
+    <p style="margin-top:8px"><b>Jasa Bikin Undangan Digital RSVP:</b> Pernikahan, Khitanan, Ulang Tahun, Syukuran, Aqiqah. Link: undangan.telukaru.my.id/nama-kamu</p>
+    <p style="margin-top:8px"><b>Jasa Desain:</b> Logo, Banner, ID Card, Spanduk, Poster, Feed IG, dan lainnya.</p>
+    <button class="btn" style="margin-top:12px" onclick="showTab('home',document.querySelectorAll('.tabs button')[0])">Kembali ke Katalog & Order</button>
+  </div>
+  <div class="grid" id="products2"></div>
+</div>
+
+<!-- KABAR -->
+<div id="tab-kabar" class="hidden">
+  <div class="section">
+    <h2>📰 Kabar Brandan & Langkat</h2>
+    <p>Berita terbaru dari <b>TelukAru.com</b> - Pangkalan Brandan, Babalan, Langkat.</p>
+    <a class="btn btn-dark" style="margin-top:10px;display:inline-block" href="https://www.telukaru.com" target="_blank">Buka TelukAru.com →</a>
+    <div style="margin-top:14px">
+      <p><b>• Promo Undangan Digital:</b> Order bulan ini gratis 1 revisi desain + musik.</p>
+      <p style="margin-top:8px"><b>• Website UMKM Brandan:</b> Mulai 500rb sudah dapat domain .my.id + WA Order.</p>
+      <p style="margin-top:8px"><b>• Layanan Cash:</b> Bisa bayar langsung di lokasi Pelawi Utara.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ZODIAK -->
+<div id="tab-zodiak" class="hidden">
+  <div class="section">
+    <h2>🔮 Zodiak Hari Ini</h2>
+    <p>Pilih zodiak kamu untuk lihat ramalan hari ini.</p>
+    <select id="zodiakSelect" onchange="showZodiak()">
+      <option>Aries (21 Mar - 19 Apr)</option><option>Taurus (20 Apr - 20 Mei)</option><option>Gemini (21 Mei - 20 Jun)</option><option>Cancer (21 Jun - 22 Jul)</option><option>Leo (23 Jul - 22 Agu)</option><option>Virgo (23 Agu - 22 Sep)</option><option>Libra (23 Sep - 22 Okt)</option><option>Scorpio (23 Okt - 21 Nov)</option><option>Sagitarius (22 Nov - 21 Des)</option><option>Capricorn (22 Des - 19 Jan)</option><option>Aquarius (20 Jan - 18 Feb)</option><option>Pisces (19 Feb - 20 Mar)</option>
+    </select>
+    <div id="zodiakResult" style="margin-top:12px;background:#fff8e1;padding:12px;border-radius:10px"></div>
+  </div>
+</div>
+
+<!-- CART BAR -->
+<div class="cart-bar" onclick="openCheckout()">
+  <span>🛒 <span id="cartCount">0</span> Produk | Total: <b id="cartTotal">Rp 0</b></span>
+  <span>Checkout →</span>
+</div>
+
+<!-- MODAL CHECKOUT -->
+<div class="modal" id="checkoutModal">
+  <div class="modal-box">
+    <h2>📝 Form Order</h2>
+    <p style="font-size:13px;color:#555">Isi data diri, lalu pilih pembayaran. Order akan dikirim ke WA.</p>
+    <input id="fNama" placeholder="Nama Lengkap *">
+    <input id="fWA" placeholder="No WA Aktif * ex: 08779xxxxxxx">
+    <input id="fAlamat" placeholder="Alamat / Desa / Kecamatan">
+    <input id="fCatatan" placeholder="Catatan: misal nama mempelai, tanggal acara, warna...">
+    <label style="font-size:13px;font-weight:700">Metode Bayar</label>
+    <select id="fBayar"><option value="Cash langsung ke lokasi">Cash langsung ke lokasi</option><option value="QRIS 087794536555">QRIS - 087794536555</option></select>
+    <div id="orderList" style="margin-top:12px;font-size:13px"></div>
+    <h3 style="margin-top:10px">Total: <span id="checkoutTotal">Rp 0</span></h3>
+    <button class="btn" style="width:100%;margin-top:10px" onclick="sendWA()">Kirim Order ke WA ✅</button>
+    <button class="btn btn-outline" style="width:100%;margin-top:8px" onclick="showStruk()">Lihat & Download Struk 🧾</button>
+    <button class="btn btn-outline" style="width:100%;margin-top:8px" onclick="closeCheckout()">Tutup</button>
+  </div>
+</div>
+
+<!-- MODAL STRUK -->
+<div class="modal" id="strukModal">
+  <div class="modal-box">
+    <div class="struk" id="strukContent">
+      <center><b>TELUKARU.MY.ID</b><br>Pelawi Utara, Pangkalan Brandan, Babalan, Langkat, Sumut<br>WA: 087794536555 | Email: order@telukaru.my.id<br>--------------------------------</center>
+      <div id="strukBody"></div>
+      <center>--------------------------------<br>Terima kasih sudah order di TelukAru.my.id<br>© 2026 - Bayu Ramadhan</center>
+    </div>
+    <button class="btn" style="width:100%;margin-top:10px" onclick="downloadJPG()">Download JPG 📷</button>
+    <button class="btn btn-dark" style="width:100%;margin-top:8px" onclick="window.print()">Download / Print PDF 🖨️</button>
+    <button class="btn btn-outline" style="width:100%;margin-top:8px" onclick="document.getElementById('strukModal').style.display='none'">Tutup</button>
+  </div>
+</div>
+
+<footer>
+  <b style="font-size:16px">Telukaru.my.id</b><br>
+  Pelawi Utara, Pangkalan Brandan, Kecamatan Babalan, Kabupaten Langkat, Sumatera Utara<br>
+  Email: <a href="mailto:order@telukaru.my.id">bayu@telukaru.com</a><br>
+  WhatsApp: <a href="https://wa.me/6287794536555">087794536555</a><br>
+  Website: <a href="https://www.telukaru.my.id">www.telukaru.my.id</a><br><br>
+  Jasa: Website Sekolah, UMKM, Organisasi, Yayasan, Undangan Digital RSVP, Desain Logo, Banner, ID Card.<br><br>
+  Copyright 2026 - Telukaru.my.id | Bayu Ramadhan
+</footer>
+
+<nav class="bottom-nav">
+  <button class="active" onclick="showTab('home',this)">🏠<br>HOME</button>
+  <button onclick="showTab('jasa',this)">🛠️<br>JASA</button>
+  <button onclick="showTab('kabar',this)">📰<br>KABAR</button>
+  <button onclick="showTab('zodiak',this)"><br></button>
+  <button onclick="openCheckout()">🛒<br>KERANJANG</button>
+</nav>
+
+<script>
+const products=[
+{id:1,cat:'website',title:'Website Sekolah',price:750000,img:'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600',desc:'Profil sekolah, PPDB, galeri, berita.'},
+{id:2,cat:'website',title:'Website UMKM',price:500000,img:'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600',desc:'Katalog, tombol WA, Google Maps.'},
+{id:3,cat:'website',title:'Website Organisasi / Yayasan',price:650000,img:'https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600',desc:'Struktur, program, donasi.'},
+{id:4,cat:'website',title:'Website Aliansi / Forum / Persatuan',price:650000,img:'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600',desc:'Member, agenda, pengumuman.'},
+{id:5,cat:'website',title:'Website Komunitas',price:550000,img:'https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=600',desc:'Komunitas Brandan, event.'},
+{id:6,cat:'website',title:'Website Konten Kreator',price:600000,img:'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600',desc:'Link bio, portofolio, Youtube.'},
+{id:7,cat:'website',title:'Website Profil / Portofolio',price:450000,img:'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600',desc:'CV online, portofolio.'},
+{id:8,cat:'website',title:'Portal Berita',price:950000,img:'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600',desc:'Kaya TelukAru.com, kategori berita.'},
+{id:9,cat:'undangan',title:'Undangan Digital RSVP Pernikahan',price:250000,img:'https://images.unsplash.com/photo-1519741497674-611481863552?w=600',desc:'RSVP, countdown, maps, musik, galeri.'},
+{id:10,cat:'undangan',title:'Undangan Digital Khitanan / Aqiqah',price:150000,img:'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=600',desc:'RSVP + galeri + lokasi.'},
+{id:11,cat:'undangan',title:'Undangan Ulang Tahun / Syukuran',price:150000,img:'https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=600',desc:'Undangan lucu + RSVP.'},
+{id:12,cat:'desain',title:'Desain Logo',price:150000,img:'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600',desc:'Logo UMKM, sekolah, komunitas.'},
+{id:13,cat:'desain',title:'Desain Banner / Spanduk',price:75000,img:'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600',desc:'Banner WA, spanduk, poster.'},
+{id:14,cat:'desain',title:'Desain ID Card',price:50000,img:'https://images.unsplash.com/photo-1589041127168-9b1915731dc3?w=600',desc:'ID Card panitia, karyawan, siswa.'},
+{id:15,cat:'desain',title:'Desain Lainnya (Feed IG, dll)',price:50000,img:'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=600',desc:'Feed IG, thumbnail, dll.'},
+];
+let cart={},currentCat='all';
+function fmt(n){return 'Rp '+n.toLocaleString('id-ID')}
+function render(){
+  let list=products.filter(p=>(currentCat==='all'||p.cat===currentCat));
+  let q=document.getElementById('search').value.toLowerCase();
+  if(q) list=list.filter(p=>p.title.toLowerCase().includes(q));
+  let s=document.getElementById('sort').value;
+  if(s==='low') list.sort((a,b)=>a.price-b.price);
+  if(s==='high') list.sort((a,b)=>b.price-a.price);
+  if(s==='name') list.sort((a,b)=>a.title.localeCompare(b.title));
+  let html=list.map(p=>`
+  <div class="card">
+    <img src="${p.img}">
+    <div class="card-body">
+      <span class="badge">${p.cat==='website'?'🌐 WEBSITE':p.cat==='undangan'?'💌 UNDANGAN':'🎨 DESAIN'}</span>
+      <b>${p.title}</b><p>${p.desc}</p>
+      <div class="price">${fmt(p.price)}</div>
+      <div class="qty"><button onclick="changeQty(${p.id},-1)">-</button><b>${cart[p.id]||0}</b><button onclick="changeQty(${p.id},1)">+</button><button class="btn" style="padding:6px 10px;font-size:12px;margin-left:auto" onclick="changeQty(${p.id},1);openCheckout()">Order</button></div>
+    </div>
+  </div>`).join('');
+  document.getElementById('products').innerHTML=html;
+  document.getElementById('products2').innerHTML=html;
+  updateCart();
+}
+function changeQty(id,d){cart[id]=Math.max(0,(cart[id]||0)+d); if(cart[id]===0) delete cart[id]; render();}
+function updateCart(){
+  let count=Object.values(cart).reduce((a,b)=>a+b,0);
+  let total=Object.entries(cart).reduce((s,[id,q])=>s+products.find(p=>p.id==id).price*q,0);
+  document.getElementById('cartCount').innerText=count;
+  document.getElementById('cartTotal').innerText=fmt(total);
+  document.getElementById('checkoutTotal').innerText=fmt(total);
+  let list=Object.entries(cart).map(([id,q])=>{let p=products.find(x=>x.id==id);return `• ${p.title} x ${q} = ${fmt(p.price*q)}`}).join('<br>');
+  document.getElementById('orderList').innerHTML=list||'Belum ada produk. Pilih dulu di katalog.';
+}
+function setCat(c,el){currentCat=c;document.querySelectorAll('#chips .chip').forEach(x=>x.classList.remove('active'));el.classList.add('active');render();}
+function showTab(name,btn){
+  ['home','jasa','kabar','zodiak'].forEach(t=>document.getElementById('tab-'+t).classList.add('hidden'));
+  document.getElementById('tab-'+name).classList.remove('hidden');
+  document.querySelectorAll('.tabs button, .bottom-nav button').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  window.scrollTo(0,0);
+}
+function openCheckout(){updateCart();document.getElementById('checkoutModal').style.display='block'}
+function closeCheckout(){document.getElementById('checkoutModal').style.display='none'}
+function showStruk(){
+  let nama=document.getElementById('fNama').value||'-';
+  let wa=document.getElementById('fWA').value||'-';
+  let bayar=document.getElementById('fBayar').value;
+  let total=Object.entries(cart).reduce((s,[id,q])=>s+products.find(p=>p.id==id).price*q,0);
+  let items=Object.entries(cart).map(([id,q])=>{let p=products.find(x=>x.id==id);return `${p.title} x ${q} - ${fmt(p.price*q)}`}).join('<br>');
+  document.getElementById('strukBody').innerHTML=`<br>Nama: ${nama}<br>WA: ${wa}<br>Bayar: ${bayar}<br>Tanggal: ${new Date().toLocaleDateString('id-ID')}<br>--------------------------------<br>${items}<br>--------------------------------<br><b>TOTAL: ${fmt(total)}</b><br>QRIS: 087794536555<br>Cash: Pelawi Utara, Brandan`;
+  document.getElementById('strukModal').style.display='block';
+}
+function sendWA(){
+  let nama=document.getElementById('fNama').value; let wa=document.getElementById('fWA').value;
+  if(!nama||!wa){alert('Isi Nama & No WA dulu prof!');return;}
+  let items=Object.entries(cart).map(([id,q])=>{let p=products.find(x=>x.id==id);return `- ${p.title} x ${q} = ${fmt(p.price*q)}`}).join('\n');
+  let total=Object.entries(cart).reduce((s,[id,q])=>s+products.find(p=>p.id==id).price*q,0);
+  let msg=`Halo TelukAru.my.id, saya mau ORDER:%0A%0ANama: ${nama}%0AWA: ${wa}%0AAlamat: ${document.getElementById('fAlamat').value}%0ACatatan: ${document.getElementById('fCatatan').value}%0A%0A${encodeURIComponent(items)}%0A%0ATOTAL: ${fmt(total)}%0ABayar: ${document.getElementById('fBayar').value}`;
+  window.open('https://wa.me/6287794536555?text='+msg,'_blank');
+}
+function showZodiak(){
+  let z=document.getElementById('zodiakSelect').value;
+  document.getElementById('zodiakResult').innerHTML=`<b>${z}</b><br>💰 Rezeki: Ada orderan masuk hari ini, jangan lupa balas WA cepat.<br>❤️ Asmara: Jaga komunikasi.<br>🍀 Angka hoki: ${Math.floor(Math.random()*99)+1}<br><i>Ramalan hiburan dari TelukAru.my.id</i>`;
+}
+function downloadJPG(){
+  alert('Untuk download JPG: Screenshot struk ini, atau di HP tekan tombol Share > Save as Image. Untuk PDF gunakan tombol Print PDF di bawah.');
+}
+showZodiak(); render();
+</script>
+</body>
+</html>
