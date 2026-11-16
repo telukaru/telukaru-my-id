@@ -6,7 +6,7 @@
 <title>Telukaru.my.id - Jasa Bikin Website, Undangan Digital & Desain</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,Arial,sans-serif}
-body{background:#f6f7fb;color:#111;padding-bottom:90px}
+body{background:#f6f7fb;color:#111;padding-bottom:180px}
 a{text-decoration:none;color:inherit}
 .top{background:#0b2a4a;color:#fff;padding:12px 14px;position:sticky;top:0;z-index:50}
 .logo{display:flex;align-items:center;gap:10px}
@@ -28,7 +28,7 @@ a{text-decoration:none;color:inherit}
 .chip{display:inline-block;background:#eef2f7;padding:8px 12px;border-radius:999px;margin:4px 4px 4px 0;font-size:13px;cursor:pointer;border:1px solid #e0e6ef}
 .chip.active{background:#0b2a4a;color:#fff}
 select,input,textarea{width:100%;padding:11px;border:1.5px solid #ddd;border-radius:10px;margin-top:8px;font-size:14px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 14px 20px}
 @media(max-width:560px){.grid{grid-template-columns:1fr 1fr}.card p{font-size:12px}}
 .card{background:#fff;border-radius:14px;overflow:hidden;border:1px solid #eee;display:flex;flex-direction:column}
 .card img{width:100%;height:130px;object-fit:cover}
@@ -43,19 +43,20 @@ select,input,textarea{width:100%;padding:11px;border:1.5px solid #ddd;border-rad
 .gallery{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
 .gallery img{width:100%;height:90px;object-fit:cover;border-radius:10px}
 .video{width:100%;height:220px;border:0;border-radius:12px;margin-top:10px}
-.cart-bar{position:fixed;left:12px;right:12px;bottom:72px;background:#0b2a4a;color:#fff;padding:12px 14px;border-radius:14px;display:flex;justify-content:space-between;align-items:center;z-index:1000000;box-shadow:0 8px 24px rgba(0,0,0,.25)}
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:2000000;overflow:auto;padding:16px}
+/* CART BAR NAIK - BIAR GAK NUTUPIN TOMBOL ORDER */
+.cart-bar{position:fixed;left:12px;right:12px;bottom:112px;background:#0b2a4a;color:#fff;padding:12px 14px;border-radius:14px;display:flex;justify-content:space-between;align-items:center;z-index:1000000;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:2147483647;overflow:auto;padding:16px}
 .modal-box{background:#fff;border-radius:16px;padding:18px;max-width:520px;margin:20px auto}
 .struk{background:#fff;border:1px dashed #333;padding:16px;border-radius:10px;font-size:13px;line-height:1.6}
-.bottom-nav{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #ddd;display:flex;z-index:1000000}
+/* BOTTOM NAV NAIK 40px - BIAR GAK KETIMPA BADGE LAGI */
+.bottom-nav{position:fixed;left:0;right:0;bottom:40px;background:#fff;border-top:1px solid #ddd;display:flex;z-index:1000000;box-shadow:0 -2px 10px rgba(0,0,0,.08)}
 .bottom-nav button{flex:1;padding:10px 2px;border:0;background:#fff;font-size:11px;font-weight:700;cursor:pointer;color:#666}
 .bottom-nav button.active{color:#0b2a4a;border-top:3px solid #ffb703}
 footer{background:#0b2a4a;color:#fff;padding:22px 16px 30px;margin-top:20px;font-size:13px;line-height:1.7}
 footer a{color:#ffb703}
 .hidden{display:none!important}
-/* REVISI FINAL BADGE: MENU DI DEPAN, BADGE DI BELAKANG - TIDAK ADA KOTAK PENUTUP LAGI */
-a[href*="netlify.com"], iframe[src*="netlify"]{z-index:1!important}
-div:has(> a[href*="netlify.com"]){z-index:1!important}
+/* STRIP PENIMBUN BADGE - DI PALING BAWAH, WARNA PUTIH */
+#penutup-badge-final{position:fixed;left:0;right:0;bottom:0;height:40px;background:#fff;z-index:2147483647;pointer-events:none}
 .zodiak-card{background:#fff8e1;padding:14px;border-radius:12px;line-height:1.7;font-size:13px}
 .zodiak-card b{font-size:15px}
 .zodiak-bar{height:8px;background:#eee;border-radius:99px;overflow:hidden;margin:3px 0 8px}
@@ -76,7 +77,6 @@ div:has(> a[href*="netlify.com"]){z-index:1!important}
   </div>
 </header>
 
-<!-- HOME -->
 <div id="tab-home">
   <div class="hero">
     <h1>Jasa Bikin Website, Undangan Digital RSVP & Desain</h1>
@@ -85,7 +85,6 @@ div:has(> a[href*="netlify.com"]){z-index:1!important}
     <a class="btn btn-dark" href="https://wa.me/6287794536555?text=Halo%20TelukAru%2C%20saya%20mau%20tanya%20jasa" target="_blank">Chat WA</a>
     <p style="margin-top:10px">⭐ Dipercaya warga Brandan • 📦 Pengerjaan 1-3 Hari • 💳 QRIS 087794536555</p>
   </div>
-
   <div class="filters">
     <h3>🔍 Cari Jasa - Filter Kategori & Harga</h3>
     <div id="chips">
@@ -101,9 +100,7 @@ div:has(> a[href*="netlify.com"]){z-index:1!important}
     </select>
     <input id="search" placeholder="Cari: website sekolah, undangan, logo..." oninput="render()">
   </div>
-
   <div class="grid" id="products"></div>
-
   <div class="section">
     <h2>📸 Galeri Foto</h2>
     <div class="gallery">
@@ -121,7 +118,6 @@ div:has(> a[href*="netlify.com"]){z-index:1!important}
   </div>
 </div>
 
-<!-- JASA -->
 <div id="tab-jasa" class="hidden">
   <div class="section">
     <h2>🛠️ Semua Jasa TelukAru</h2>
@@ -133,7 +129,6 @@ div:has(> a[href*="netlify.com"]){z-index:1!important}
   <div class="grid" id="products2"></div>
 </div>
 
-<!-- KABAR -->
 <div id="tab-kabar" class="hidden">
   <div class="section">
     <h2>📰 Kabar Brandan & Langkat</h2>
@@ -147,7 +142,6 @@ div:has(> a[href*="netlify.com"]){z-index:1!important}
   </div>
 </div>
 
-<!-- ZODIAK - BEDA TIAP HARI & TIAP ZODIAK -->
 <div id="tab-zodiak" class="hidden">
   <div class="section">
     <h2>🔮 Zodiak Hari Ini</h2>
@@ -173,13 +167,11 @@ div:has(> a[href*="netlify.com"]){z-index:1!important}
   </div>
 </div>
 
-<!-- CART BAR -->
 <div class="cart-bar" onclick="openCheckout()">
   <span>🛒 <span id="cartCount">0</span> Produk | Total: <b id="cartTotal">Rp 0</b></span>
   <span>Checkout →</span>
 </div>
 
-<!-- MODAL CHECKOUT -->
 <div class="modal" id="checkoutModal">
   <div class="modal-box">
     <h2>📝 Form Order</h2>
@@ -198,7 +190,6 @@ div:has(> a[href*="netlify.com"]){z-index:1!important}
   </div>
 </div>
 
-<!-- MODAL STRUK -->
 <div class="modal" id="strukModal">
   <div class="modal-box">
     <div class="struk" id="strukContent">
@@ -229,6 +220,9 @@ div:has(> a[href*="netlify.com"]){z-index:1!important}
   <button onclick="showTab('zodiak',this)">🔮<br>ZODIAK</button>
   <button onclick="openCheckout()">🛒<br>KERANJANG</button>
 </nav>
+
+<!-- STRIP PUTIH PENIMBUN BADGE - HARUS PALING AKHIR DI BODY -->
+<div id="penutup-badge-final"></div>
 
 <script>
 const products=[
@@ -310,148 +304,40 @@ function sendWA(){
   let msg=`Halo TelukAru.my.id, saya mau ORDER:%0A%0ANama: ${nama}%0AWA: ${wa}%0AAlamat: ${document.getElementById('fAlamat').value}%0ACatatan: ${document.getElementById('fCatatan').value}%0A%0A${encodeURIComponent(items)}%0A%0ATOTAL: ${fmt(total)}%0ABayar: ${document.getElementById('fBayar').value}`;
   window.open('https://wa.me/6287794536555?text='+msg,'_blank');
 }
-function downloadJPG(){
-  alert('Untuk download JPG: Screenshot struk ini, atau di HP tekan tombol Share > Save as Image. Untuk PDF gunakan tombol Print PDF di bawah.');
-}
-
-// ===== ZODIAK: BEDA TIAP HARI & TIAP ZODIAK =====
+function downloadJPG(){alert('Untuk download JPG: Screenshot struk ini, atau di HP tekan tombol Share > Save as Image. Untuk PDF gunakan tombol Print PDF di bawah.');}
 const zodiakNama=["♈ Aries (21 Mar - 19 Apr)","♉ Taurus (20 Apr - 20 Mei)","♊ Gemini (21 Mei - 20 Jun)","♋ Cancer (21 Jun - 22 Jul)","♌ Leo (23 Jul - 22 Agu)","♍ Virgo (23 Agu - 22 Sep)","♎ Libra (23 Sep - 22 Okt)","♏ Scorpio (23 Okt - 21 Nov)","♐ Sagitarius (22 Nov - 21 Des)","♑ Capricorn (22 Des - 19 Jan)","♒ Aquarius (20 Jan - 18 Feb)","♓ Pisces (19 Feb - 20 Mar)"];
-const zRezeki=[
-"Ada orderan masuk dari orang tak terduga, jangan lupa balas WA cepat.",
-"Rezeki lancar lewat teman lama. Ada yang nawarin proyek kecil, ambil aja.",
-"Hari ini hemat dulu, jangan jajan berlebihan. Ada rezeki sore hari.",
-"Uang masuk dari kerjaan kemarin. Cocok buat nabung / bayar cicilan.",
-"Dapat bonus / tip dari pelanggan yang puas. Rajin-rajin promosi di status WA.",
-"Jangan pinjemin uang dulu hari ini. Fokus ke orderan yang udah masuk.",
-"Ada peluang jualan baru dari tetangga. Coba tawarkan katalog TelukAru.",
-"Rezeki datang dari arah yang gak disangka. Cek DM IG / WA, ada yang tanya harga.",
-"Hari ini cocok buat nagih utang / pembayaran yang tertunda.",
-"Kerja kerasmu mulai kelihatan hasilnya. Ada yang mau repeat order.",
-"Jangan tergiur investasi bodong. Simpan uangmu untuk modal usaha.",
-"Rezeki kecil tapi berkah. Syukuri, besok lebih besar lagi.",
-"Jualan laris manis, stok desain / ide jangan sampai habis.",
-"Ada pelanggan baru dari Brandan / Babalan yang mau order website."
-];
-const zAsmara=[
-"Pasangan lagi butuh perhatian. Chat duluan, jangan gengsi.",
-"Jomblo: Ada yang diam-diam stalking IG kamu. Coba update story.",
-"Jangan bahas masa lalu hari ini, fokus ke rencana masa depan bareng.",
-"Hubungan lagi hangat-hangatnya. Ajak jalan sore ke Pelawi / Brandan.",
-"Ada salah paham kecil, selesaikan dengan ngobrol, jangan didiamkan.",
-"Si dia kangen, tapi malu ngomong. Kamu yang mulai duluan.",
-"Buat yang PDKT: Hari ini waktu yang pas buat nyatain perasaan.",
-"Jangan cemburu berlebihan. Percaya aja, dia setia kok.",
-"Pasanganmu butuh didengerin, bukan dinasehatin. Dengerin aja dulu.",
-"Jomblo: Fokus kerja dulu, jodoh datang pas rezeki udah mapan.",
-"Romantis hari ini. Kirim lagu / meme lucu ke dia.",
-"Kasih kejutan kecil, gak harus mahal. Yang penting tulus.",
-"Jangan baper sama chat yang dibales lama. Dia lagi sibuk kerja.",
-"Hubungan makin serius. Udah waktunya kenalin ke keluarga."
-];
-const zSehat=[
-"Tidur cukup malam ini, jangan begadang main HP.",
-"Minum air putih yang banyak, cuaca Brandan lagi panas.",
-"Jaga makan, kurangi gorengan & es teh manis hari ini.",
-"Olahraga ringan 15 menit, jalan sore keliling komplek.",
-"Mata capek karena kebanyakan layar. Istirahat tiap 1 jam.",
-"Perut agak sensitif, jangan makan pedas berlebihan.",
-"Badan pegal-pegal, butuh stretching / pijat ringan.",
-"Jangan lupa sarapan, jangan cuma ngopi doang.",
-"Kesehatan 90% bagus, cuma perlu istirahat lebih awal.",
-"Hati-hati masuk angin, bawa jaket kalau keluar malam.",
-"Semangat tinggi, tapi jangan forsir. Istirahat itu juga kerja.",
-"Makan sayur & buah hari ini, badan jadi lebih enteng."
-];
-const zSaran=[
-"Jangan tunda-tunda kerjaan, kerjain yang paling penting dulu.",
-"Hari ini cocok buat promosi di status WA & IG.",
-"Belajar 1 hal baru hari ini, misal desain / edit video.",
-"Rapikan meja kerja / HP, biar ide datang lancar.",
-"Jangan bandingkan dirimu dengan orang lain, fokus ke progresmu.",
-"Ucapkan terima kasih ke 1 orang yang udah bantu kamu.",
-"Tulis target mingguanmu, tempel di dinding.",
-"Berani tolak orderan yang gak masuk akal harganya.",
-"Dengerin musik yang bikin semangat sambil kerja.",
-"Telpon orang tua / keluarga, tanya kabar mereka."
-];
+const zRezeki=["Ada orderan masuk dari orang tak terduga, jangan lupa balas WA cepat.","Rezeki lancar lewat teman lama. Ada yang nawarin proyek kecil, ambil aja.","Hari ini hemat dulu, jangan jajan berlebihan. Ada rezeki sore hari.","Uang masuk dari kerjaan kemarin. Cocok buat nabung / bayar cicilan.","Dapat bonus / tip dari pelanggan yang puas. Rajin-rajin promosi di status WA.","Jangan pinjemin uang dulu hari ini. Fokus ke orderan yang udah masuk.","Ada peluang jualan baru dari tetangga. Coba tawarkan katalog TelukAru.","Rezeki datang dari arah yang gak disangka. Cek DM IG / WA, ada yang tanya harga.","Hari ini cocok buat nagih utang / pembayaran yang tertunda.","Kerja kerasmu mulai kelihatan hasilnya. Ada yang mau repeat order.","Jangan tergiur investasi bodong. Simpan uangmu untuk modal usaha.","Rezeki kecil tapi berkah. Syukuri, besok lebih besar lagi.","Jualan laris manis, stok desain / ide jangan sampai habis.","Ada pelanggan baru dari Brandan / Babalan yang mau order website."];
+const zAsmara=["Pasangan lagi butuh perhatian. Chat duluan, jangan gengsi.","Jomblo: Ada yang diam-diam stalking IG kamu. Coba update story.","Jangan bahas masa lalu hari ini, fokus ke rencana masa depan bareng.","Hubungan lagi hangat-hangatnya. Ajak jalan sore ke Pelawi / Brandan.","Ada salah paham kecil, selesaikan dengan ngobrol, jangan didiamkan.","Si dia kangen, tapi malu ngomong. Kamu yang mulai duluan.","Buat yang PDKT: Hari ini waktu yang pas buat nyatain perasaan.","Jangan cemburu berlebihan. Percaya aja, dia setia kok.","Pasanganmu butuh didengerin, bukan dinasehatin. Dengerin aja dulu.","Jomblo: Fokus kerja dulu, jodoh datang pas rezeki udah mapan.","Romantis hari ini. Kirim lagu / meme lucu ke dia.","Kasih kejutan kecil, gak harus mahal. Yang penting tulus.","Jangan baper sama chat yang dibales lama. Dia lagi sibuk kerja.","Hubungan makin serius. Udah waktunya kenalin ke keluarga."];
+const zSehat=["Tidur cukup malam ini, jangan begadang main HP.","Minum air putih yang banyak, cuaca Brandan lagi panas.","Jaga makan, kurangi gorengan & es teh manis hari ini.","Olahraga ringan 15 menit, jalan sore keliling komplek.","Mata capek karena kebanyakan layar. Istirahat tiap 1 jam.","Perut agak sensitif, jangan makan pedas berlebihan.","Badan pegal-pegal, butuh stretching / pijat ringan.","Jangan lupa sarapan, jangan cuma ngopi doang.","Kesehatan 90% bagus, cuma perlu istirahat lebih awal.","Hati-hati masuk angin, bawa jaket kalau keluar malam.","Semangat tinggi, tapi jangan forsir. Istirahat itu juga kerja.","Makan sayur & buah hari ini, badan jadi lebih enteng."];
+const zSaran=["Jangan tunda-tunda kerjaan, kerjain yang paling penting dulu.","Hari ini cocok buat promosi di status WA & IG.","Belajar 1 hal baru hari ini, misal desain / edit video.","Rapikan meja kerja / HP, biar ide datang lancar.","Jangan bandingkan dirimu dengan orang lain, fokus ke progresmu.","Ucapkan terima kasih ke 1 orang yang udah bantu kamu.","Tulis target mingguanmu, tempel di dinding.","Berani tolak orderan yang gak masuk akal harganya.","Dengerin musik yang bikin semangat sambil kerja.","Telpon orang tua / keluarga, tanya kabar mereka."];
 const zWarna=["Merah","Kuning","Biru Laut","Hijau","Putih","Hitam","Orange","Pink","Ungu","Coklat","Abu-abu","Tosca"];
 const zHariBaik=["Senin","Selasa","Rabu","Kamis","Jumat","Sabtu","Minggu"];
-function seedHarian(zodiakIndex){
-  let d=new Date();
-  let key = d.getFullYear()*10000 + (d.getMonth()+1)*100 + d.getDate();
-  let seed = (key * 31 + (zodiakIndex+1)*17 + 7) % 100000;
-  let x = Math.sin(seed) * 10000;
-  return Math.abs(Math.floor((x - Math.floor(x)) * 10000));
-}
-function pick(arr, seed, offset){
-  return arr[(seed + offset*13 + Math.floor(seed/7)) % arr.length];
-}
-function showZodiak(){
-  let idx = parseInt(document.getElementById('zodiakSelect').value) || 0;
-  let today = new Date();
-  let tglStr = today.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
-  document.getElementById('zodiakTanggal').innerText = "📅 " + tglStr;
-  let seed = seedHarian(idx);
-  let rezeki = pick(zRezeki, seed, 1);
-  let asmara = pick(zAsmara, seed, 2);
-  let sehat = pick(zSehat, seed, 3);
-  let saran = pick(zSaran, seed, 4);
-  let warna = zWarna[(seed + idx) % zWarna.length];
-  let angka = ((seed + idx*3) % 90) + 10;
-  let angka2 = ((seed*2 + idx) % 90) + 1;
-  let persenRezeki = 55 + ((seed + idx) % 45);
-  let persenAsmara = 50 + ((seed*2 + idx*2) % 48);
-  let persenSehat = 60 + ((seed*3 + idx) % 38);
-  let hariBaik = zHariBaik[(seed + idx*2) % 7];
-  let jamBaik = (7 + ((seed+idx)%10)) + ".00 - " + (9 + ((seed+idx)%10)) + ".00 WIB";
-  document.getElementById('zodiakResult').innerHTML = `
-  <div class="zodiak-card">
-    <b>${zodiakNama[idx]}</b><br>
-    <span style="color:#888;font-size:12px">Ramalan untuk ${tglStr}</span><br><br>
-    💰 <b>Rezeki: ${persenRezeki}%</b>
-    <div class="zodiak-bar"><i style="width:${persenRezeki}%"></i></div>
-    ${rezeki}<br><br>
-    ❤️ <b>Asmara: ${persenAsmara}%</b>
-    <div class="zodiak-bar"><i style="width:${persenAsmara}%;background:#ff5a8a"></i></div>
-    ${asmara}<br><br>
-    💪 <b>Kesehatan: ${persenSehat}%</b>
-    <div class="zodiak-bar"><i style="width:${persenSehat}%;background:#25D366"></i></div>
-    ${sehat}<br><br>
-    🍀 <b>Angka Hoki:</b> ${angka} & ${angka2} &nbsp; | &nbsp; 🎨 <b>Warna Hoki:</b> ${warna}<br>
-    ⏰ <b>Jam Baik:</b> ${jamBaik} &nbsp; | &nbsp; 📅 <b>Hari Baik Minggu Ini:</b> ${hariBaik}<br><br>
-    💡 <b>Saran Hari Ini:</b> ${saran}<br><br>
-    <i>Ramalan hiburan dari TelukAru.my.id</i>
-  </div>`;
-}
-function acakZodiak(){
-  let sel=document.getElementById('zodiakSelect');
-  let r=Math.floor(Math.random()*12);
-  sel.value=r;
-  showZodiak();
-}
+function seedHarian(zodiakIndex){let d=new Date();let key=d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate();let seed=(key*31+(zodiakIndex+1)*17+7)%100000;let x=Math.sin(seed)*10000;return Math.abs(Math.floor((x-Math.floor(x))*10000));}
+function pick(arr,seed,offset){return arr[(seed+offset*13+Math.floor(seed/7))%arr.length];}
+function showZodiak(){let idx=parseInt(document.getElementById('zodiakSelect').value)||0;let today=new Date();let tglStr=today.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'});document.getElementById('zodiakTanggal').innerText="📅 "+tglStr;let seed=seedHarian(idx);let rezeki=pick(zRezeki,seed,1);let asmara=pick(zAsmara,seed,2);let sehat=pick(zSehat,seed,3);let saran=pick(zSaran,seed,4);let warna=zWarna[(seed+idx)%zWarna.length];let angka=((seed+idx*3)%90)+10;let angka2=((seed*2+idx)%90)+1;let persenRezeki=55+((seed+idx)%45);let persenAsmara=50+((seed*2+idx*2)%48);let persenSehat=60+((seed*3+idx)%38);let hariBaik=zHariBaik[(seed+idx*2)%7];let jamBaik=(7+((seed+idx)%10))+".00 - "+(9+((seed+idx)%10))+".00 WIB";document.getElementById('zodiakResult').innerHTML=`<div class="zodiak-card"><b>${zodiakNama[idx]}</b><br><span style="color:#888;font-size:12px">Ramalan untuk ${tglStr}</span><br><br>💰 <b>Rezeki: ${persenRezeki}%</b><div class="zodiak-bar"><i style="width:${persenRezeki}%"></i></div>${rezeki}<br><br>❤️ <b>Asmara: ${persenAsmara}%</b><div class="zodiak-bar"><i style="width:${persenAsmara}%;background:#ff5a8a"></i></div>${asmara}<br><br>💪 <b>Kesehatan: ${persenSehat}%</b><div class="zodiak-bar"><i style="width:${persenSehat}%;background:#25D366"></i></div>${sehat}<br><br>🍀 <b>Angka Hoki:</b> ${angka} & ${angka2} &nbsp; | &nbsp; 🎨 <b>Warna Hoki:</b> ${warna}<br>⏰ <b>Jam Baik:</b> ${jamBaik} &nbsp; | &nbsp; 📅 <b>Hari Baik Minggu Ini:</b> ${hariBaik}<br><br>💡 <b>Saran Hari Ini:</b> ${saran}<br><br><i>Ramalan hiburan dari TelukAru.my.id</i></div>`;}
+function acakZodiak(){let sel=document.getElementById('zodiakSelect');let r=Math.floor(Math.random()*12);sel.value=r;showZodiak();}
 showZodiak(); render();
 </script>
 
-<!-- HAPUS BADGE NETLIFY - AMAN, TIDAK SENTUH MENU -->
+<!-- JAGA STRIP PENUTUP SELALU PALING DEPAN -->
 <script>
 (function(){
-  function killBadge(){
+  var strip=document.getElementById('penutup-badge-final');
+  function jagaStrip(){
+    if(strip){ document.body.appendChild(strip); }
     document.querySelectorAll('a, iframe').forEach(function(el){
       var href=(el.getAttribute&&el.getAttribute('href')||'').toLowerCase();
       var src=(el.getAttribute&&el.getAttribute('src')||'').toLowerCase();
-      if(href.includes('netlify.com')||src.includes('netlify')){
-        var p = el.parentElement;
-        if(p && (p.classList.contains('bottom-nav') || p.classList.contains('cart-bar') || p.closest('.bottom-nav') || p.closest('.cart-bar'))){
-          return;
-        }
-        if(p && p.tagName!=='BODY'){p.style.display='none';p.remove();}
-        el.remove();
+      if((href.includes('netlify.com')||src.includes('netlify')) && !el.closest('.bottom-nav') && !el.closest('.cart-bar')){
+        var p=el.parentElement;
+        if(p && p.tagName!=='BODY'){ try{p.remove();}catch(e){} }
+        try{el.remove();}catch(e){}
       }
     });
+    if(strip){ document.body.appendChild(strip); }
   }
-  killBadge();
-  setInterval(killBadge,1000);
-  new MutationObserver(killBadge).observe(document.body,{childList:true,subtree:true});
+  setInterval(jagaStrip,500);
+  new MutationObserver(jagaStrip).observe(document.body,{childList:true,subtree:true});
 })();
 </script>
 </body>
