@@ -53,8 +53,8 @@ select,input,textarea{width:100%;padding:11px;border:1.5px solid #ddd;border-rad
 footer{background:#0b2a4a;color:#fff;padding:22px 16px 30px;margin-top:20px;font-size:13px;line-height:1.7}
 footer a{color:#ffb703}
 .hidden{display:none!important}
-/* HILANGKAN BADGE NETLIFY */
-a[href*="netlify.com"]:not([href*="telukaru"]){display:none!important}
+/* SEMBUNYIKAN BADGE NETLIFY */
+a[href*="netlify.com"]{display:none!important}
 iframe[src*="netlify"]{display:none!important}
 </style>
 </head>
@@ -305,21 +305,18 @@ showZodiak(); render();
 <script>
 (function(){
   function killBadge(){
-    document.querySelectorAll('a, div, iframe, span, button').forEach(function(el){
+    document.querySelectorAll('a, div, iframe, span').forEach(function(el){
       var t = (el.innerText || '').toLowerCase();
       var href = (el.getAttribute && el.getAttribute('href') || '').toLowerCase();
-      if(t.includes('powered by netlify') || href.includes('netlify.com') && el.closest('body') && el.innerText && el.innerText.length < 100){
+      if(t.includes('powered by netlify') || (href.includes('netlify.com') && t.length < 100 && t.length > 0)){
         var target = el;
-        // Naik ke parent yang fixed di pojok
-        for(var i=0;i<3;i++){ if(target.parentElement) target = target.parentElement; }
+        for(var i=0;i<4;i++){ if(target.parentElement) target = target.parentElement; }
         target.style.display='none';
         target.remove();
       }
     });
   }
-  // Jalankan berkali-kali karena badge Netlify muncul telat
   setInterval(killBadge, 500);
-  // Pantau kalau ada elemen baru
   var obs = new MutationObserver(killBadge);
   obs.observe(document.body, {childList:true, subtree:true});
 })();
