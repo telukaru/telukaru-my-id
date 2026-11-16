@@ -53,12 +53,28 @@ select,input,textarea{width:100%;padding:11px;border:1.5px solid #ddd;border-rad
 footer{background:#0b2a4a;color:#fff;padding:22px 16px 30px;margin-top:20px;font-size:13px;line-height:1.7}
 footer a{color:#ffb703}
 .hidden{display:none!important}
-/* HAPUS BADGE NETLIFY - VERSI REVISI */
+/* LAPIS 1: SEMBUNYIKAN BADGE NETLIFY */
 a[href*="netlify.com"], iframe[src*="netlify"]{display:none!important;visibility:hidden!important}
 div:has(> a[href*="netlify.com"]){display:none!important}
+/* LAPIS 3: PENUTUP BADGE - WARNA SAMA DENGAN BACKGROUND BIAR NYATU */
+#tutup-badge-netlify{
+  position:fixed;bottom:58px;right:6px;width:190px;height:42px;
+  background:#f6f7fb;z-index:99999;pointer-events:none;border-radius:20px;
+}
+/* Biar penutupnya juga nutup kalau di tab lain yang background putih */
+#tutup-badge-netlify-2{
+  position:fixed;bottom:58px;right:6px;width:190px;height:42px;
+  background:#fff;z-index:99998;pointer-events:none;border-radius:20px;
+}
+.zodiak-card{background:#fff8e1;padding:14px;border-radius:12px;line-height:1.7;font-size:13px}
+.zodiak-card b{font-size:15px}
+.zodiak-bar{height:8px;background:#eee;border-radius:99px;overflow:hidden;margin:3px 0 8px}
+.zodiak-bar i{display:block;height:100%;background:#ffb703;border-radius:99px}
 </style>
 </head>
 <body>
+<div id="tutup-badge-netlify-2"></div>
+<div id="tutup-badge-netlify"></div>
 
 <header class="top">
   <div class="logo">
@@ -143,15 +159,29 @@ div:has(> a[href*="netlify.com"]){display:none!important}
   </div>
 </div>
 
-<!-- ZODIAK -->
+<!-- ZODIAK - VERSI BARU BEDA TIAP HARI & TIAP ZODIAK -->
 <div id="tab-zodiak" class="hidden">
   <div class="section">
     <h2>🔮 Zodiak Hari Ini</h2>
-    <p>Pilih zodiak kamu untuk lihat ramalan hari ini.</p>
+    <p id="zodiakTanggal" style="color:#0b2a4a;font-weight:700"></p>
+    <p>Pilih zodiak kamu untuk lihat ramalan hari ini. Ramalan berubah tiap hari!</p>
     <select id="zodiakSelect" onchange="showZodiak()">
-      <option>Aries (21 Mar - 19 Apr)</option><option>Taurus (20 Apr - 20 Mei)</option><option>Gemini (21 Mei - 20 Jun)</option><option>Cancer (21 Jun - 22 Jul)</option><option>Leo (23 Jul - 22 Agu)</option><option>Virgo (23 Agu - 22 Sep)</option><option>Libra (23 Sep - 22 Okt)</option><option>Scorpio (23 Okt - 21 Nov)</option><option>Sagitarius (22 Nov - 21 Des)</option><option>Capricorn (22 Des - 19 Jan)</option><option>Aquarius (20 Jan - 18 Feb)</option><option>Pisces (19 Feb - 20 Mar)</option>
+      <option value="0">♈ Aries (21 Mar - 19 Apr)</option>
+      <option value="1">♉ Taurus (20 Apr - 20 Mei)</option>
+      <option value="2">♊ Gemini (21 Mei - 20 Jun)</option>
+      <option value="3">♋ Cancer (21 Jun - 22 Jul)</option>
+      <option value="4">♌ Leo (23 Jul - 22 Agu)</option>
+      <option value="5">♍ Virgo (23 Agu - 22 Sep)</option>
+      <option value="6">♎ Libra (23 Sep - 22 Okt)</option>
+      <option value="7">♏ Scorpio (23 Okt - 21 Nov)</option>
+      <option value="8">♐ Sagitarius (22 Nov - 21 Des)</option>
+      <option value="9">♑ Capricorn (22 Des - 19 Jan)</option>
+      <option value="10">♒ Aquarius (20 Jan - 18 Feb)</option>
+      <option value="11">♓ Pisces (19 Feb - 20 Mar)</option>
     </select>
-    <div id="zodiakResult" style="margin-top:12px;background:#fff8e1;padding:12px;border-radius:10px"></div>
+    <div id="zodiakResult" style="margin-top:12px"></div>
+    <button class="btn btn-dark" style="margin-top:10px;width:100%" onclick="acakZodiak()">🎲 Acak Zodiak Lain</button>
+    <p style="margin-top:8px;font-size:11px;color:#888">* Ramalan hiburan dari TelukAru.my.id - Jangan dijadikan patokan mutlak, tetap semangat kerja & usaha!</p>
   </div>
 </div>
 
@@ -271,6 +301,7 @@ function showTab(name,btn){
   document.querySelectorAll('.tabs button, .bottom-nav button').forEach(b=>b.classList.remove('active'));
   if(btn) btn.classList.add('active');
   window.scrollTo(0,0);
+  if(name==='zodiak') showZodiak();
 }
 function openCheckout(){updateCart();document.getElementById('checkoutModal').style.display='block'}
 function closeCheckout(){document.getElementById('checkoutModal').style.display='none'}
@@ -291,41 +322,155 @@ function sendWA(){
   let msg=`Halo TelukAru.my.id, saya mau ORDER:%0A%0ANama: ${nama}%0AWA: ${wa}%0AAlamat: ${document.getElementById('fAlamat').value}%0ACatatan: ${document.getElementById('fCatatan').value}%0A%0A${encodeURIComponent(items)}%0A%0ATOTAL: ${fmt(total)}%0ABayar: ${document.getElementById('fBayar').value}`;
   window.open('https://wa.me/6287794536555?text='+msg,'_blank');
 }
-function showZodiak(){
-  let z=document.getElementById('zodiakSelect').value;
-  document.getElementById('zodiakResult').innerHTML=`<b>${z}</b><br>💰 Rezeki: Ada orderan masuk hari ini, jangan lupa balas WA cepat.<br>❤️ Asmara: Jaga komunikasi.<br>🍀 Angka hoki: ${Math.floor(Math.random()*99)+1}<br><i>Ramalan hiburan dari TelukAru.my.id</i>`;
-}
 function downloadJPG(){
   alert('Untuk download JPG: Screenshot struk ini, atau di HP tekan tombol Share > Save as Image. Untuk PDF gunakan tombol Print PDF di bawah.');
+}
+
+// ===== ZODIAK BARU: BEDA TIAP HARI & TIAP ZODIAK =====
+const zodiakNama=["♈ Aries (21 Mar - 19 Apr)","♉ Taurus (20 Apr - 20 Mei)","♊ Gemini (21 Mei - 20 Jun)","♋ Cancer (21 Jun - 22 Jul)","♌ Leo (23 Jul - 22 Agu)","♍ Virgo (23 Agu - 22 Sep)","♎ Libra (23 Sep - 22 Okt)","♏ Scorpio (23 Okt - 21 Nov)","♐ Sagitarius (22 Nov - 21 Des)","♑ Capricorn (22 Des - 19 Jan)","♒ Aquarius (20 Jan - 18 Feb)","♓ Pisces (19 Feb - 20 Mar)"];
+const zRezeki=[
+"Ada orderan masuk dari orang tak terduga, jangan lupa balas WA cepat.",
+"Rezeki lancar lewat teman lama. Ada yang nawarin proyek kecil, ambil aja.",
+"Hari ini hemat dulu, jangan jajan berlebihan. Ada rezeki sore hari.",
+"Uang masuk dari kerjaan kemarin. Cocok buat nabung / bayar cicilan.",
+"Dapat bonus / tip dari pelanggan yang puas. Rajin-rajin promosi di status WA.",
+"Jangan pinjemin uang dulu hari ini. Fokus ke orderan yang udah masuk.",
+"Ada peluang jualan baru dari tetangga. Coba tawarkan katalog TelukAru.",
+"Rezeki datang dari arah yang gak disangka. Cek DM IG / WA, ada yang tanya harga.",
+"Hari ini cocok buat nagih utang / pembayaran yang tertunda.",
+"Kerja kerasmu mulai kelihatan hasilnya. Ada yang mau repeat order.",
+"Jangan tergiur investasi bodong. Simpan uangmu untuk modal usaha.",
+"Rezeki kecil tapi berkah. Syukuri, besok lebih besar lagi.",
+"Jualan laris manis, stok desain / ide jangan sampai habis.",
+"Ada pelanggan baru dari Brandan / Babalan yang mau order website."
+];
+const zAsmara=[
+"Pasangan lagi butuh perhatian. Chat duluan, jangan gengsi.",
+"Jomblo: Ada yang diam-diam stalking IG kamu. Coba update story.",
+"Jangan bahas masa lalu hari ini, fokus ke rencana masa depan bareng.",
+"Hubungan lagi hangat-hangatnya. Ajak jalan sore ke Pelawi / Brandan.",
+"Ada salah paham kecil, selesaikan dengan ngobrol, jangan didiamkan.",
+"Si dia kangen, tapi malu ngomong. Kamu yang mulai duluan.",
+"Buat yang PDKT: Hari ini waktu yang pas buat nyatain perasaan.",
+"Jangan cemburu berlebihan. Percaya aja, dia setia kok.",
+"Pasanganmu butuh didengerin, bukan dinasehatin. Dengerin aja dulu.",
+"Jomblo: Fokus kerja dulu, jodoh datang pas rezeki udah mapan.",
+"Romantis hari ini. Kirim lagu / meme lucu ke dia.",
+"Kasih kejutan kecil, gak harus mahal. Yang penting tulus.",
+"Jangan baper sama chat yang dibales lama. Dia lagi sibuk kerja.",
+"Hubungan makin serius. Udah waktunya kenalin ke keluarga."
+];
+const zSehat=[
+"Tidur cukup malam ini, jangan begadang main HP.",
+"Minum air putih yang banyak, cuaca Brandan lagi panas.",
+"Jaga makan, kurangi gorengan & es teh manis hari ini.",
+"Olahraga ringan 15 menit, jalan sore keliling komplek.",
+"Mata capek karena kebanyakan layar. Istirahat tiap 1 jam.",
+"Perut agak sensitif, jangan makan pedas berlebihan.",
+"Badan pegal-pegal, butuh stretching / pijat ringan.",
+"Jangan lupa sarapan, jangan cuma ngopi doang.",
+"Kesehatan 90% bagus, cuma perlu istirahat lebih awal.",
+"Hati-hati masuk angin, bawa jaket kalau keluar malam.",
+"Semangat tinggi, tapi jangan forsir. Istirahat itu juga kerja.",
+"Makan sayur & buah hari ini, badan jadi lebih enteng."
+];
+const zSaran=[
+"Jangan tunda-tunda kerjaan, kerjain yang paling penting dulu.",
+"Hari ini cocok buat promosi di status WA & IG.",
+"Belajar 1 hal baru hari ini, misal desain / edit video.",
+"Rapikan meja kerja / HP, biar ide datang lancar.",
+"Jangan bandingkan dirimu dengan orang lain, fokus ke progresmu.",
+"Ucapkan terima kasih ke 1 orang yang udah bantu kamu.",
+"Tulis target mingguanmu, tempel di dinding.",
+"Berani tolak orderan yang gak masuk akal harganya.",
+"Dengerin musik yang bikin semangat sambil kerja.",
+"Telpon orang tua / keluarga, tanya kabar mereka."
+];
+const zWarna=["Merah","Kuning","Biru Laut","Hijau","Putih","Hitam","Orange","Pink","Ungu","Coklat","Abu-abu","Tosca"];
+const zHariBaik=["Senin","Selasa","Rabu","Kamis","Jumat","Sabtu","Minggu"];
+// Rumus: seed dari tanggal + index zodiak, jadi beda tiap hari & tiap zodiak, tapi sama untuk semua orang di hari yang sama
+function seedHarian(zodiakIndex){
+  let d=new Date();
+  let key = d.getFullYear()*10000 + (d.getMonth()+1)*100 + d.getDate();
+  let seed = (key * 31 + (zodiakIndex+1)*17 + 7) % 100000;
+  // hash sederhana biar acak tapi stabil dalam 1 hari
+  let x = Math.sin(seed) * 10000;
+  return Math.abs(Math.floor((x - Math.floor(x)) * 10000));
+}
+function pick(arr, seed, offset){
+  return arr[(seed + offset*13 + Math.floor(seed/7)) % arr.length];
+}
+function showZodiak(){
+  let idx = parseInt(document.getElementById('zodiakSelect').value) || 0;
+  let today = new Date();
+  let tglStr = today.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  document.getElementById('zodiakTanggal').innerText = "📅 " + tglStr;
+  let seed = seedHarian(idx);
+  let rezeki = pick(zRezeki, seed, 1);
+  let asmara = pick(zAsmara, seed, 2);
+  let sehat = pick(zSehat, seed, 3);
+  let saran = pick(zSaran, seed, 4);
+  let warna = zWarna[(seed + idx) % zWarna.length];
+  let angka = ((seed + idx*3) % 90) + 10;
+  let angka2 = ((seed*2 + idx) % 90) + 1;
+  let persenRezeki = 55 + ((seed + idx) % 45);
+  let persenAsmara = 50 + ((seed*2 + idx*2) % 48);
+  let persenSehat = 60 + ((seed*3 + idx) % 38);
+  let hariBaik = zHariBaik[(seed + idx*2) % 7];
+  let jamBaik = (7 + ((seed+idx)%10)) + ".00 - " + (9 + ((seed+idx)%10)) + ".00 WIB";
+  document.getElementById('zodiakResult').innerHTML = `
+  <div class="zodiak-card">
+    <b>${zodiakNama[idx]}</b><br>
+    <span style="color:#888;font-size:12px">Ramalan untuk ${tglStr}</span><br><br>
+    💰 <b>Rezeki: ${persenRezeki}%</b>
+    <div class="zodiak-bar"><i style="width:${persenRezeki}%"></i></div>
+    ${rezeki}<br><br>
+    ❤️ <b>Asmara: ${persenAsmara}%</b>
+    <div class="zodiak-bar"><i style="width:${persenAsmara}%;background:#ff5a8a"></i></div>
+    ${asmara}<br><br>
+    💪 <b>Kesehatan: ${persenSehat}%</b>
+    <div class="zodiak-bar"><i style="width:${persenSehat}%;background:#25D366"></i></div>
+    ${sehat}<br><br>
+    🍀 <b>Angka Hoki:</b> ${angka} & ${angka2} &nbsp; | &nbsp; 🎨 <b>Warna Hoki:</b> ${warna}<br>
+    ⏰ <b>Jam Baik:</b> ${jamBaik} &nbsp; | &nbsp; 📅 <b>Hari Baik Minggu Ini:</b> ${hariBaik}<br><br>
+    💡 <b>Saran Hari Ini:</b> ${saran}<br><br>
+    <i>Ramalan hiburan dari TelukAru.my.id</i>
+  </div>`;
+}
+function acakZodiak(){
+  let sel=document.getElementById('zodiakSelect');
+  let r=Math.floor(Math.random()*12);
+  sel.value=r;
+  showZodiak();
 }
 showZodiak(); render();
 </script>
 
-<!-- REVISI: HAPUS BADGE NETLIFY - AMAN, TIDAK HAPUS MENU -->
+<!-- LAPIS 2: HAPUS BADGE NETLIFY VIA JS -->
 <script>
 (function(){
   function killBadge(){
     document.querySelectorAll('a, iframe').forEach(function(el){
-      var href = (el.getAttribute && el.getAttribute('href') || '').toLowerCase();
-      var src = (el.getAttribute && el.getAttribute('src') || '').toLowerCase();
-      if(href.includes('netlify.com') || src.includes('netlify')){
-        if(el.parentElement && el.parentElement.tagName !== 'BODY'){
-          el.parentElement.style.display = 'none';
-          el.parentElement.remove();
-        }
+      var href=(el.getAttribute&&el.getAttribute('href')||'').toLowerCase();
+      var src=(el.getAttribute&&el.getAttribute('src')||'').toLowerCase();
+      if(href.includes('netlify.com')||src.includes('netlify')){
+        if(el.parentElement && el.parentElement.tagName!=='BODY'){el.parentElement.style.display='none';el.parentElement.remove();}
         el.remove();
       }
     });
     document.querySelectorAll('div, span').forEach(function(el){
-      var t = (el.innerText || '').trim().toLowerCase();
-      if(t === 'powered by netlify' || t === 'powered by netlify ✨'){
-        el.remove();
-      }
+      var t=(el.innerText||'').trim().toLowerCase();
+      if(t==='powered by netlify'){el.remove();}
     });
+    // Pastikan penutup selalu di depan
+    var c1=document.getElementById('tutup-badge-netlify');
+    var c2=document.getElementById('tutup-badge-netlify-2');
+    if(c1) c1.style.display='block';
+    if(c2) c2.style.display='block';
   }
   killBadge();
-  setInterval(killBadge, 1000);
-  new MutationObserver(killBadge).observe(document.body, {childList:true, subtree:true});
+  setInterval(killBadge,1000);
+  new MutationObserver(killBadge).observe(document.body,{childList:true,subtree:true});
 })();
 </script>
 </body>
